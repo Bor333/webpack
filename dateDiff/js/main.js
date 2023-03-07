@@ -1,4 +1,3 @@
-
 import { printError, printResult } from './printResult.js';
 import getDateDiff from './getDateDiff.js';
 
@@ -19,3 +18,4 @@ form.onsubmit = (event) => {
         printResult(dateDiff);
     }
 }
+

@@ -1,37 +1,28 @@
-import { DateTime } from '../luxon.js';
-import { printResult } from '../printResult.js';
-// import dataFromObj from './main.js';
-// import {formData} from './main.js';
-// let dataFromObj = new DateTime;
+// import {timerInput} from './main.js';
 
+export const timeStep = (timerOn) => { 
+    let timerShow = document.getElementById("timer"); 
+    let timerInput = document.getElementById("time");
+    let timeMinut = parseInt(timerInput.value) * 60;
+    console.log(timerShow);
+    timerOn = true;
+  
+    const timer = setInterval(function () {
+      let seconds = timeMinut % 60;
+      let minutes = timeMinut / 60 % 60;
+      let hour = timeMinut / 60 / 60 % 60;
+  
 
-
-
-
+      if (timeMinut <= 0) {
+        clearInterval(timer);
+        timerShow.innerText= "Время закончилось";
+      } else if (timerOn) {
+        let strTimer = `${Math.trunc(hour)}:${Math.trunc(minutes)}:${seconds}`;
+        timerShow.innerHTML = strTimer;
+      }
+      --timeMinut;
+    }, 1000)
     
-    export function timeStep(timeObj) {
-        console.log(timeObj);
-        timeObj = timeObj.minus(1000);
-        return setInterval(timeStep(timeObj), 1000);
-        return timeStep(timeObj);
-    }
-    
-    
 
-
-// export const getTimeDiff = (time) => {
-//     let dataFromObj = DateTime.fromISO(time);
-
-//     setInterval(timeStep(), 1000);
-       
-    
-//     function timeStep() {
-//         // dataFromObj.second;
-//        // dataFromObj = dataFromObj.minus(1000);
-//         console.log(dataFromObj.second);
-//         return dataFromObj.minus(1000);
-//     }
-    
-//     // export default dataFromObj
-// }
+  }
 

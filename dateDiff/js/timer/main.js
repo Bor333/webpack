@@ -1,46 +1,16 @@
-// import { printError, printResult } from '../printResult.js';
-import { printResult } from './printResult.js';
-import { timeStep } from './timeStep.js';
-// import dataFromObj from './getTimeDiff.js';
-import { DateTime } from '../luxon.js';
+import {Howl} from 'howler';
+import {timeStep} from './timeStep.js';
 
 
-export const timerForm = document.getElementById("timercalc");
+let buttonRun = document.getElementById("button");
+let buttonStop = document.getElementById("stop");
+let timerOn = false;
+let timer = null;
 
-//export const formData ;
+buttonRun.addEventListener('click', timeStep(timerOn));
 
-timerForm.onsubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-
-    const time = formData.get('totalTime');
-  
-    let timeObj = DateTime.fromISO(time);
-
-    timeStep(timeObj);
-
-
-   // getTimeDiff(time);
-
-
-   // let dataFromObj = DateTime.fromISO(time);
-
-  //  dataFromObj = DateTime.fromISO(time);
-
- 
-
-    
-
-    // setInterval(() => {
-    //   console.log(dataFromObj.second)
-    //   return dataFromObj.minus(1000)
-    //   }, 1000);
-  
-
-   // setInterval(printResult(timeStep(time)), 1000);
-  
-   
-    
-  // result.innerText = setInterval(printResult(timeStep(time)), 1000);
-   
-}
+buttonStop.addEventListener('click',  () => {
+  timerOn = false;
+  timer = null;
+  timerShow.innerHTML = null;
+});
